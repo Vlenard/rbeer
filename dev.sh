@@ -6,7 +6,6 @@ usage(){
     echo "Használat: $0 [--frontend] [--backend] [--all]"
     echo "  --frontend      Csak a frontend indul (dev)"
     echo "  --backend       Csak a backend indul (dev)"
-    echo "  --all           Mind a kettő elindul" 
     exit 1
 }
 
@@ -17,19 +16,14 @@ fi
 for arg in "$@";do
     case $arg in
         --frontend)     
-            echo "not implemented"
+            cd frontend
+            npm run dev
         ;;
         --backend)
-            echo "not implemented"
-        ;;
-        --all)
-            gnome-terminal -- bash -c "cd frontend && npm run dev; exec bash"
-            gnome-terminal -- bash -c "node index.js; exec bash"   
+            ts-node-dev --respawn --transpile-only src/index.ts
         ;;
         *)
         usage
         ;;
     esac
 done
-
-
