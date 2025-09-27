@@ -2,11 +2,14 @@ import { defineConfig } from 'vite'
 import react from '@vitejs/plugin-react'
 import tailwindcss from '@tailwindcss/vite'
 import path from 'path'
+import pug from './plugins/pug';
 
 // https://vite.dev/config/
 export default defineConfig({
+  base: "./",
   build: {
-    outDir: "../public"
+    outDir: "../views/app",
+    assetsDir: "../../public/app",
   },
   plugins: [
     react({
@@ -14,7 +17,9 @@ export default defineConfig({
         plugins: [['babel-plugin-react-compiler']],
       },
     }),
-    tailwindcss()
+    tailwindcss(),
+    pug.transformIndexHtml(),
+    pug.renameIndexHtmlToPug()
   ],
   resolve: {
     alias: {

@@ -1,11 +1,7 @@
-import './App.css'
+import type React from "react";
 
-function App() {
-  return (
-    <>
-      Hello
-    </>
-  )
-}
+const App: React.FC = () => {
+  return <div>Hello, World!</div>;
+};
 
-export default App
+export default App;
