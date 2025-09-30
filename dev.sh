@@ -20,7 +20,7 @@ for arg in "$@";do
             npm run dev
         ;;
         --backend)
-            ts-node-dev --respawn --transpile-only src/index.ts
+            tsnd --respawn src/index.ts
         ;;
         *)
         usage

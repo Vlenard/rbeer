@@ -2,7 +2,7 @@ import { defineConfig } from 'vite'
 import react from '@vitejs/plugin-react'
 import tailwindcss from '@tailwindcss/vite'
 import path from 'path'
-import pug from './plugins/pug';
+import handlebars from './plugins/handlebars'
 
 // https://vite.dev/config/
 export default defineConfig({
@@ -18,8 +18,8 @@ export default defineConfig({
       },
     }),
     tailwindcss(),
-    pug.transformIndexHtml(),
-    pug.renameIndexHtmlToPug()
+    handlebars.renameIndexHtmlToPug(),
+    handlebars.transformIndexHtml()
   ],
   resolve: {
     alias: {

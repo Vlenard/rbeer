@@ -1,7 +1,12 @@
-import type React from "react";
+import type { FC } from "react";
+import { Route, Routes } from "react-router";
 
-const App: React.FC = () => {
-  return <div>Hello, World!</div>;
+const App: FC = () => {
+  return (
+    <Routes>
+      <Route path="/app" element={<div>Home</div>} />
+    </Routes>
+  );
 };
 
 export default App;

@@ -1,6 +1,7 @@
-if [ -d "dist" ]; then
-    rm -r /dist/*
-fi
-tsc
+#rm -r dist
+#mkdir dist
+#tsc
+#cp -r node_modules/ dist/node_modules
+rm -r public/app
 cd frontend/ 
 npm run build
