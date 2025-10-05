@@ -5,5 +5,5 @@ npx prisma generate
 chmod +x ./dev.sh
 chmod +x ./build.sh
 echo "Installing frontend dependencies..."
-cd frontend/
+cd frontend/app
 npm install

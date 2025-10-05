@@ -8,7 +8,7 @@ import handlebars from './plugins/handlebars'
 export default defineConfig({
   base: "./",
   build: {
-    outDir: "../views/app",
+    outDir: "../../views/app",
     assetsDir: "../../public/app",
   },
   plugins: [

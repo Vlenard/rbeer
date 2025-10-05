@@ -3,7 +3,7 @@ import fs from 'fs';
 
 const transformIndexHtml = () => {
   return {
-    name: 'html to pug',
+    name: 'html to handlebars',
     transformIndexHtml(html: string, { server }: { server: boolean }) {
       if (server) return html; // skip during dev
 
@@ -25,6 +25,10 @@ const transformIndexHtml = () => {
         }
       );
 
+      html = html.replace(/<title>.*<\/title>/, '<title>{{title}}</title>');
+
+      html = html.replace('lang="en"', 'lang="{{lang}}"');
+
       return html;
     }
   }
@@ -34,7 +38,7 @@ const renameIndexHtmlToPug = () => {
   return {
     name: "rename index.html to index.handlebars",
     closeBundle() {
-      const buildDir = path.resolve(__dirname, "../../views/app");
+      const buildDir = path.resolve(__dirname, "../../../views/app");
       if (fs.existsSync(buildDir)) {
         fs.readdirSync(buildDir).forEach((file: any) => {
           if (file === "index.html") {

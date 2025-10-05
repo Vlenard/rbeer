@@ -3,5 +3,5 @@
 #tsc
 #cp -r node_modules/ dist/node_modules
 rm -r public/app
-cd frontend/ 
+cd frontend/app
 npm run build

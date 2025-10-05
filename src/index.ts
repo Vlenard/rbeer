@@ -5,6 +5,7 @@ import dotenv from 'dotenv';
 import cors from "cors";
 import viewsRouter from "./routes/views";
 import apiRouter from "./routes/api";
+import staticRouter from "./static";
 import { engine } from "express-handlebars";
 
 dotenv.config();
@@ -20,7 +21,7 @@ app.set("view engine", "handlebars");
 app.use(cors());
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
-app.use(express.static("public"));
+app.use(staticRouter);
 app.use("/api", apiRouter);
 app.use("/", viewsRouter);
 
