@@ -1,4 +1,5 @@
 import express from 'express';
+import { url } from 'inspector';
 
 const router = express.Router();
 
@@ -7,11 +8,28 @@ router.get("/", (req, res) => {
 });
 
 router.get("/login", (req, res) => {
-  res.render("./auth/login", { layout: false, title: "Login", message: "Welcome", lang: "hu" });
+  res.render("./auth/login", { 
+    layout: false, 
+    lang: "hu",
+    title: "Login",
+    url: req.protocol + '://' + req.get('host')});
 });
 
 router.get("/registration", (req, res) => {
-  res.render("./auth/registration", { layout: false, title: "Registration", message: "Welcome", lang: "hu" });
+  res.render("./auth/registration", { 
+    layout: false, 
+    lang: "hu",
+    title: "Registration", 
+    url: req.protocol + '://' + req.get('host')});
+});
+
+router.get("/fail", (req, res) => {
+  res.render("./auth/fail", { 
+    layout: false, 
+    title: "Registration fail", 
+    message: "Something goes wrong try again", 
+    lang: "hu",
+    url: req.protocol + '://' + req.get('host')});
 });
 
 router.get("/*app", (req, res) => {

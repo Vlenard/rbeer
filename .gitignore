@@ -1,6 +1,6 @@
 /node_modules
-/public/app
-/views/app
+/public/
+/views/
 /dist
 /prisma/dist
 /.env
