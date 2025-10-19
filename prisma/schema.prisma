@@ -10,13 +10,18 @@ generator client {
 }
 
 datasource db {
-  provider = "mysql"
-  url      = env("DATABASE_URL")
+  //provider = "mysql"
+  //url      = env("DATABASE_URL")
+  provider = "sqlite"
+  url      = "file:./dev.db"
 }
 
 model User {
-  id  Int   @id @default(autoincrement())
-  name  String
+  id              String         @id @default(uuid())
+  email           String         @unique
+  passwordHash    String
+  name            String?
+  isEmailVerified Boolean        @default(false)
+  createdAt       DateTime       @default(now())
+  updatedAt       DateTime       @updatedAt
 }
-
-//auth setup later

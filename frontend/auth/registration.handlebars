@@ -1,31 +1,31 @@
 <!DOCTYPE html>
 <html lang="{{lang}}">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="../styles/registration.css">
   <title>{{title}}</title>
 </head>
+
 <body>
-    <div class="register-container">
-        <h2>Register</h2>
-        <form>
-            <label for="name">Name</label>
-            <input type="text" id="name" name="name" required>
+  <div class="register-container">
+    <h2>Register</h2>
+    <form action="{{url}}/api/user/register" method="POST">
 
-            <label for="email">Email</label>
-            <input type="email" id="email" name="email" required>
+      <label for="email">Email</label>
+      <input type="email" id="email" name="email" required>
 
-            <label for="password">Password</label>
-            <input type="password" id="password" name="password" required>
+      <label for="password">Password</label>
+      <input type="password" id="password" name="password" required>
 
-            <label for="confirm-password">Confirm Password</label>
-            <input type="password" id="confirm-password" name="confirm-password" required>
-
-            <button><a href="{{url}}/">Back to landing</a></button>
-            <button><a href="{{url}}/login">Login</a></button>
-            <button type="submit">Register</button>
-        </form>
-    </div>
+      <div class="button-group">
+        <button type="button" onclick="window.location.href='{{url}}/'">Back to landing</button>
+        <button type="button" onclick="window.location.href='{{url}}/login'">Login</button>
+        <button type="submit">Register</button>
+      </div>
+    </form>
+  </div>
 </body>
+
 </html>

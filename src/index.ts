@@ -7,6 +7,7 @@ import viewsRouter from "./routes/views";
 import apiRouter from "./routes/api";
 import staticRouter from "./static";
 import { engine } from "express-handlebars";
+import cookieParser from "cookie-parser";
 
 dotenv.config();
 const env = process.env.NODE_ENV || "development";
@@ -19,6 +20,7 @@ app.engine("handlebars", engine());
 app.set("trust proxy", true);
 app.set("view engine", "handlebars");
 app.use(cors());
+app.use(cookieParser());
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(staticRouter);
