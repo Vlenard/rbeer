@@ -1,6 +1,6 @@
 #!/bin/bash
 
-FRONTEND_PATH="frontend/"
+FRONTEND_PATH="./frontend/"
 PUBLIC_PATH="./public/"
 VIEWS_PATH="./views/"
 EXCLUDE_DIRS=("app") # Directories to exclude
@@ -14,13 +14,21 @@ usage(){
 }
 
 copy_frontend_assets(){
+
     echo "🔄 Syncing frontend assets..."
+
+    if [ -f "tailwind.config.js" ]; then
+        echo "Compile tailwind"
+        npx @tailwindcss/cli -i "$FRONTEND_PATH/input.css" -o "$PUBLIC_PATH/output.css" --minify
+    fi
 
     # Build exclusion parameters
     EXCLUDES=()
     for dir in "${EXCLUDE_DIRS[@]}"; do
         EXCLUDES+=(--exclude="$dir")
     done
+
+    EXCLUDES+=(--exclude="input.css")
 
     mkdir -p "$PUBLIC_PATH" "$VIEWS_PATH"
 

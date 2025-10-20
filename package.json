@@ -15,6 +15,7 @@
   "type": "commonjs",
   "dependencies": {
     "@prisma/client": "^6.17.1",
+    "@tailwindcss/cli": "^4.1.14",
     "bcryptjs": "^3.0.2",
     "cookie-parser": "^1.4.7",
     "cors": "^2.8.5",
@@ -22,7 +23,8 @@
     "express": "^5.1.0",
     "express-handlebars": "^8.0.3",
     "helmet": "^8.1.0",
-    "jsonwebtoken": "^9.0.2"
+    "jsonwebtoken": "^9.0.2",
+    "tailwindcss": "^4.1.14"
   },
   "devDependencies": {
     "@types/bcryptjs": "^2.4.6",
