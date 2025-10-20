@@ -34,13 +34,13 @@ const authorize = async (req: Request, res: Response, next: NextFunction) => {
   });
 };
 
-const register = async (req: Request, res: Response) => {
+const registration = async (req: Request, res: Response) => {
   const { email, password, name } = req.body;
 
   try {
     const existingUser = await prisma.user.findUnique({ where: { email } });
     if (existingUser)
-      return res.status(400).json({ error: "Email already exists" });
+      return res.redirect(302, "/failed_to_registrate");
 
     const passwordHash = await bcrypt.hash(password, 10);
 
@@ -56,8 +56,7 @@ const register = async (req: Request, res: Response) => {
 
     return res.redirect(302, "/app");
   } catch (error) {
-    console.error(error);
-    res.status(500).json({ error: "Registration failed" });
+    return res.redirect(302, "/failed_to_registrate");
   }
 };
 
@@ -67,19 +66,18 @@ const login = async (req: Request, res: Response) => {
   try {
     const user = await prisma.user.findUnique({ where: { email } });
     if (!user)
-      return res.status(401).json({ error: "Invalid email or password" });
+      return res.redirect(302, "/failed_to_login");
 
     const validPassword = await bcrypt.compare(password, user.passwordHash);
     if (!validPassword)
-      return res.status(401).json({ error: "Invalid email or password" });
+      return res.redirect(302, "/failed_to_login");
 
     const accessToken = generateAccessToken(user);
     setAuthCookie(res, accessToken);
 
     return res.redirect(302, "/app");
   } catch (error) {
-    console.error(error);
-    res.status(500).json({ error: "Login failed" });
+    return res.redirect(302, "/failed_to_login");
   }
 };
 
@@ -92,4 +90,4 @@ const logout = (req: Request, res: Response) => {
   res.redirect("/login");
 };
 
-export default { authorize, register, login, logout };
+export default { authorize, registration, login, logout };

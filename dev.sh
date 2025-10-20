@@ -37,6 +37,8 @@ copy_frontend_assets(){
         --include='*/' \
         --include='*.js' \
         --include='*.css' \
+        --include='*.png' \
+        --include='*.ttf' \
         --exclude='*' \
         "$FRONTEND_PATH" "$PUBLIC_PATH" >/dev/null
 

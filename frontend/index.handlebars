@@ -1,15 +1,22 @@
-<!DOCTYPE html>
-<html lang="{{lang}}">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="output.css">
-  <title>{{title}}</title>
-</head>
-<body>
-  {{message}}
-  <br>
-  <button class="bg-[#0095ff]"><a href="{{url}}/login">Login</a></button>
-  <button><a href="{{url}}/registration">Registration</a></button>
-</body>
-</html>
+<div class="flex flex-1 justify-center items-center p-4 select-none">
+  <div class="flex flex-col md:flex-row rounded-3xl p-5">
+    <div class="flex items-center">
+      <img src="public/img/logo.png" alt="Logo" class="w-[20rem] h-auto mx-auto">
+    </div>
+    <div class="md:pe-20 md:pt-20">
+      <h1 class="font-title font-bold text-7xl text-center md:text-start">RBeer</h1>
+      <p class="text-sm mt-4 uppercase">Tölts magadnak egy korsóval, és merülj el az ízek világában!</p>
+      <div class="flex justify-center md:justify-start space-x-5 p-4">
+        <a class="uppercase font-bold rounded-full hover:shadow-md px-5 py-3 transition-shadow bg-[#3b2e21] text-white duration-300"
+          href="{{url}}/login">Belépés</a>
+        <a class="uppercase font-bold rounded-full hover:shadow-md px-5 py-3 transition-shadow duration-300"
+          href="{{url}}/registration">Regisztráció</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="bg-[#3b2e21] text-white text-center p-4 select-none">
+  Találd meg a következő kedvenced a közösség pontszámai alapján, vagy mutasd meg, melyik főzet nyerte el igazán a
+  tetszésed.
+</div>

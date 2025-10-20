@@ -1,27 +1,12 @@
-<!DOCTYPE html>
-<html lang="{{lang}}">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="../output.css">
-  <title>{{title}}</title>
-</head>
-<body>
-  <div class="login-container">
-    <h2>Login</h2>
-    <form action="{{url}}/api/user/login" method="POST">
-      <label for="email">Email</label>
-      <input type="email" id="email" name="email" required>
-
-      <label for="password">Password</label>
-      <input type="password" id="password" name="password" required>
-
-      <div class="button-group">
-        <button type="button" onclick="window.location.href='{{url}}/'">Back to landing</button>
-        <button type="button" onclick="window.location.href='{{url}}/registration'">Register</button>
-        <button type="submit">Login</button>
-      </div>
-    </form>
-  </div>
-</body>
-</html>
+<div class="flex flex-1 justify-center items-center">
+  <form action="{{url}}/api/user/login" method="POST" class="shadow-2xl rounded-2xl w-[30%] p-10">
+    <img src="../public/img/logo.png" alt="Logo" class="w-[15rem] h-auto mx-auto">
+    <h2 class="text-center text-xl font-bold">Bejelentkezés</h2>
+    <div class="flex flex-col space-y-5 mt-5">
+      <input type="email" class="py-2 px-5 border-[#3b2e21] border-2 outline-none rounded-lg" name="email" placeholder="E-mail cím">
+      <input type="password" class="py-2 px-5 border-[#3b2e21] border-2 outline-none rounded-lg" name="password" placeholder="Jelszó">
+      <button type="submit" class="bg-[#3b2e21] text-white py-2 rounded-lg font-bold hover:bg-[#5a4636] transition duration-300">Bejelentkezés</button>
+      <p class="text-center">Nincs fiókod? <a href="{{url}}/registration" class="hover:underline">Regisztrálj</a></p>
+    </div>
+  </form>
+</div>
