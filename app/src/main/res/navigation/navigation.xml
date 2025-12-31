@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/navigation"
+    app:startDestination="@id/list">
+    <fragment
+        android:id="@+id/list"
+        android:name="com.anonymous.List"
+        android:label="fragment_list"
+        tools:layout="@layout/fragment_list" >
+        <action
+            android:id="@+id/action_list_to_beer"
+            app:destination="@id/beer"
+            app:enterAnim="@android:anim/fade_in"
+            app:exitAnim="@android:anim/fade_out"
+            app:popEnterAnim="@android:anim/fade_in"
+            app:popExitAnim="@android:anim/fade_out" />
+    </fragment>
+    <fragment
+        android:id="@+id/beer"
+        android:name="com.anonymous.Beer"
+        android:label="fragment_beer"
+        tools:layout="@layout/fragment_beer" >
+        <action
+            android:id="@+id/action_beer_to_edit"
+            app:destination="@id/edit"
+            app:enterAnim="@android:anim/fade_in"
+            app:exitAnim="@android:anim/fade_out"
+            app:popEnterAnim="@android:anim/fade_in"
+            app:popExitAnim="@android:anim/fade_out" />
+    </fragment>
+    <fragment
+        android:id="@+id/edit"
+        android:name="com.anonymous.Edit"
+        android:label="fragment_edit"
+        tools:layout="@layout/fragment_edit" />
+</navigation>

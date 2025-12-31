@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "131468412153",
+    "project_id": "rbeer-a76da",
+    "storage_bucket": "rbeer-a76da.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:131468412153:android:98ec4224afb88020128e28",
+        "android_client_info": {
+          "package_name": "com.anonymous"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDhh3zd-Db8jDQV75YvBIUZyBL1yoiIF7w"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
