@@ -5,11 +5,12 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-
-// TODO: Rename parameter arguments, choose names that match
-// the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-private const val ARG_PARAM1 = "param1"
-private const val ARG_PARAM2 = "param2"
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
+import com.anonymous.data.BeerAdapter2List
+import com.anonymous.data.BeerType
+import com.anonymous.data.Beer
+import com.anonymous.databinding.FragmentListBinding
 
 /**
  * A simple [Fragment] subclass.
@@ -17,16 +18,67 @@ private const val ARG_PARAM2 = "param2"
  * create an instance of this fragment.
  */
 class List : Fragment() {
-    // TODO: Rename and change types of parameters
-    private var param1: String? = null
-    private var param2: String? = null
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        arguments?.let {
-            param1 = it.getString(ARG_PARAM1)
-            param2 = it.getString(ARG_PARAM2)
+    private var _binding: FragmentListBinding? = null
+    private val binding get() = _binding!!
+
+    private lateinit var beerAdapter: BeerAdapter2List
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+        _binding = FragmentListBinding.bind(view)
+
+        val sampleBeers = listOf(
+            Beer(
+                id = 1,
+                name = "Soproni Classic",
+                rating = 4,
+                note = "Klasszikus magyar lager, könnyen iható.",
+                type = BeerType.STOUT
+            ),
+            Beer(
+                id = 2,
+                name = "Mad Scientist IPA",
+                rating = 5,
+                note = "Erősen komlós, gyümölcsös illattal.",
+                type = BeerType.IPA
+            ),
+            Beer(
+                id = 3,
+                name = "Guinness Draught",
+                rating = 5,
+                note = "Krémes stout, pörkölt malátás íz.",
+                type = BeerType.STOUT
+            ),
+            Beer(
+                id = 4,
+                name = "Paulaner Hefe-Weißbier",
+                rating = 4,
+                note = "Banános, szegfűszeges búzasör.",
+                type = BeerType.IPA
+            ),
+            Beer(
+                id = 5,
+                name = "Pilsner Urquell",
+                rating = 3,
+                note = "Kesernyés, tiszta ízvilág.",
+                type = BeerType.LAGER
+            )
+        )
+
+
+        beerAdapter = BeerAdapter2List { beer ->
+
         }
+
+        view.findViewById<RecyclerView>(R.id.beerList).apply {
+            layoutManager = LinearLayoutManager(requireContext())
+            adapter = beerAdapter
+        }
+
+        // IDEIGLENES tesztadat
+        beerAdapter.submitList(sampleBeers)
     }
 
     override fun onCreateView(
@@ -37,23 +89,8 @@ class List : Fragment() {
         return inflater.inflate(R.layout.fragment_list, container, false)
     }
 
-    companion object {
-        /**
-         * Use this factory method to create a new instance of
-         * this fragment using the provided parameters.
-         *
-         * @param param1 Parameter 1.
-         * @param param2 Parameter 2.
-         * @return A new instance of fragment List.
-         */
-        // TODO: Rename and change types and number of parameters
-        @JvmStatic
-        fun newInstance(param1: String, param2: String) =
-            List().apply {
-                arguments = Bundle().apply {
-                    putString(ARG_PARAM1, param1)
-                    putString(ARG_PARAM2, param2)
-                }
-            }
+    override fun onDestroyView() {
+        super.onDestroyView()
+        _binding = null
     }
 }
