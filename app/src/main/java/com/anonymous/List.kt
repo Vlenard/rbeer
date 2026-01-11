@@ -6,11 +6,14 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
-import com.anonymous.data.BeerAdapter2List
-import com.anonymous.data.BeerType
-import com.anonymous.data.Beer
+import com.anonymous.data.AppDatabase
+import com.anonymous.adapters.BeerAdapter2List
 import com.anonymous.databinding.FragmentListBinding
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
+import com.anonymous.data.Beer
 
 /**
  * A simple [Fragment] subclass.
@@ -24,61 +27,30 @@ class List : Fragment() {
 
     private lateinit var beerAdapter: BeerAdapter2List
 
+    private lateinit var db: AppDatabase
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
         _binding = FragmentListBinding.bind(view)
 
-        val sampleBeers = listOf(
-            Beer(
-                id = 1,
-                name = "Soproni Classic",
-                rating = 4,
-                note = "Klasszikus magyar lager, könnyen iható.",
-                type = BeerType.STOUT
-            ),
-            Beer(
-                id = 2,
-                name = "Mad Scientist IPA",
-                rating = 5,
-                note = "Erősen komlós, gyümölcsös illattal.",
-                type = BeerType.IPA
-            ),
-            Beer(
-                id = 3,
-                name = "Guinness Draught",
-                rating = 5,
-                note = "Krémes stout, pörkölt malátás íz.",
-                type = BeerType.STOUT
-            ),
-            Beer(
-                id = 4,
-                name = "Paulaner Hefe-Weißbier",
-                rating = 4,
-                note = "Banános, szegfűszeges búzasör.",
-                type = BeerType.IPA
-            ),
-            Beer(
-                id = 5,
-                name = "Pilsner Urquell",
-                rating = 3,
-                note = "Kesernyés, tiszta ízvilág.",
-                type = BeerType.LAGER
-            )
+        beerAdapter = BeerAdapter2List(
+            onItemClick = { beer ->
+
+            },
+            onDeleteClick = { beer ->
+                deleteBeer(beer)
+            }
         )
 
-
-        beerAdapter = BeerAdapter2List { beer ->
-
-        }
-
-        view.findViewById<RecyclerView>(R.id.beerList).apply {
+        binding.beerList.apply {
             layoutManager = LinearLayoutManager(requireContext())
             adapter = beerAdapter
         }
 
-        // IDEIGLENES tesztadat
-        beerAdapter.submitList(sampleBeers)
+        db = AppDatabase.getDatabase(requireContext())
+
+        loadBeersFromDatabase()
     }
 
     override fun onCreateView(
@@ -87,6 +59,25 @@ class List : Fragment() {
     ): View? {
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_list, container, false)
+    }
+
+    private fun loadBeersFromDatabase() {
+        CoroutineScope(Dispatchers.IO).launch {
+            val beers = db.beerDao().getAllBeers()
+            withContext(Dispatchers.Main) {
+                beerAdapter.submitList(beers)
+            }
+        }
+    }
+
+    private fun deleteBeer(beer: Beer) {
+        CoroutineScope(Dispatchers.IO).launch {
+            db.beerDao().delete(beer)
+            val updatedList = db.beerDao().getAllBeers()
+            withContext(Dispatchers.Main) {
+                beerAdapter.submitList(updatedList)
+            }
+        }
     }
 
     override fun onDestroyView() {

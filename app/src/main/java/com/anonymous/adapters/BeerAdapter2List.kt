@@ -1,14 +1,16 @@
-package com.anonymous.data
+package com.anonymous.adapters
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
+import com.anonymous.data.Beer
 import com.anonymous.databinding.ItemBeerBinding
 
 class BeerAdapter2List(
-    private val onItemClick: (Beer) -> Unit
+    private val onItemClick: (Beer) -> Unit,
+    private val onDeleteClick: (Beer) -> Unit
 ) : ListAdapter<Beer, BeerAdapter2List.BeerViewHolder>(DiffCallback) {
 
     override fun onCreateViewHolder(
@@ -42,6 +44,10 @@ class BeerAdapter2List(
 
             root.setOnClickListener {
                 onItemClick(beer)
+            }
+
+            btnDelete.setOnClickListener {
+                onDeleteClick(beer)
             }
         }
     }

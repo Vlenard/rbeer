@@ -1,5 +1,7 @@
 <resources>
     <string name="app_name">RBeer</string>
     <string name="add_beer">+</string>
+    <string name="edit">Szerkeztés</string>
+    <string name="delete">Törlés</string>
     <!-- TODO: Remove or change this placeholder text -->
 </resources>
