@@ -1,14 +1,136 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Edit">
+    android:padding="16dp"
+    android:background="@color/primaryColor">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="edit" />
+    <!-- Beer name -->
+    <EditText
+        android:id="@+id/etBeerName"
+        android:layout_width="320dp"
+        android:layout_height="wrap_content"
+        android:autofillHints="name"
+        android:backgroundTint="@color/secondaryColor"
+        android:hint="@string/beer_name"
+        android:inputType="textPersonName"
+        android:padding="12dp"
+        android:textColor="@color/secondaryColor"
+        android:textColorHint="@color/secondaryColor"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
-</FrameLayout>
+    <!-- Beer rating (1–5) -->
+    <LinearLayout
+        android:id="@+id/llBeerRating"
+        android:layout_width="320dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:gravity="center"
+        android:orientation="horizontal"
+        android:weightSum="5"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/etBeerName">
+
+        <ImageButton
+            android:id="@+id/imageButton"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_marginHorizontal="5dp"
+            android:background="@android:drawable/btn_star_big_off"
+            android:contentDescription="star 1"
+            android:src="@android:drawable/btn_star_big_off" />
+
+        <ImageButton
+            android:id="@+id/imageButton2"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_marginHorizontal="5dp"
+            android:layout_weight="0"
+            android:background="@android:drawable/btn_star_big_off"
+            android:contentDescription="star 1"
+            android:src="@android:drawable/btn_star_big_off" />
+
+        <ImageButton
+            android:id="@+id/imageButton3"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_marginHorizontal="5dp"
+            android:layout_weight="0"
+            android:background="@android:drawable/btn_star_big_off"
+            android:contentDescription="star 1"
+            android:src="@android:drawable/btn_star_big_off" />
+
+        <ImageButton
+            android:id="@+id/imageButton4"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_marginHorizontal="5dp"
+            android:layout_weight="0"
+            android:background="@android:drawable/btn_star_big_off"
+            android:contentDescription="star 1"
+            android:src="@android:drawable/btn_star_big_off" />
+
+        <ImageButton
+            android:id="@+id/imageButton5"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_marginHorizontal="5dp"
+            android:layout_weight="0"
+            android:background="@android:drawable/btn_star_big_off"
+            android:contentDescription="star 1"
+            android:src="@android:drawable/btn_star_big_off" />
+    </LinearLayout>
+
+    <!-- Beer type (Spinner) -->
+    <Spinner
+        android:id="@+id/spBeerType"
+        android:layout_width="320dp"
+        android:layout_height="48dp"
+        android:layout_marginTop="16dp"
+        android:backgroundTint="@color/secondaryColor"
+        android:entries="@array/beer_types"
+        android:spinnerMode="dropdown"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/llBeerRating" />
+
+    <!-- Beer note -->
+    <EditText
+        android:id="@+id/etBeerNote"
+        android:layout_width="320dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:autofillHints="note"
+        android:backgroundTint="@color/secondaryColor"
+        android:hint="@string/beer_note"
+        android:inputType="textMultiLine"
+        android:lines="5"
+        android:padding="12dp"
+        android:textColor="@color/secondaryColor"
+        android:textColorHint="@color/secondaryColor"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/spBeerType" />
+
+    <!-- Save button -->
+    <Button
+        android:id="@+id/btnSaveBeer"
+        android:layout_width="320dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="24dp"
+        android:backgroundTint="@color/secondaryColor"
+        android:padding="12dp"
+        android:text="@string/save"
+        android:textColor="@color/primaryColor"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/etBeerNote" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
+

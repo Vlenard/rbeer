@@ -5,27 +5,35 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.TextView
+import android.widget.Toast
+import androidx.lifecycle.lifecycleScope
+import androidx.navigation.fragment.navArgs
+import com.anonymous.data.AppDatabase
+import com.anonymous.data.Beer
+import com.anonymous.data.BeerType
+import kotlinx.coroutines.launch
 
-// TODO: Rename parameter arguments, choose names that match
-// the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-private const val ARG_PARAM1 = "param1"
-private const val ARG_PARAM2 = "param2"
-
-/**
- * A simple [Fragment] subclass.
- * Use the [Edit.newInstance] factory method to
- * create an instance of this fragment.
- */
 class Edit : Fragment() {
-    // TODO: Rename and change types of parameters
-    private var param1: String? = null
-    private var param2: String? = null
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        arguments?.let {
-            param1 = it.getString(ARG_PARAM1)
-            param2 = it.getString(ARG_PARAM2)
+    private lateinit var db: AppDatabase
+    private lateinit var beer: Beer
+    val args: EditArgs by navArgs()
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        db = AppDatabase.getDatabase(requireContext())
+
+        if (args.beerId == -1L) {
+            beer = Beer(
+                name = "",
+                rating = 0,
+                note = "",
+                type = BeerType.LAGER
+            )
+            fillUI()
+        } else {
+            loadBeerFromDB(args.beerId)
         }
     }
 
@@ -37,23 +45,20 @@ class Edit : Fragment() {
         return inflater.inflate(R.layout.fragment_edit, container, false)
     }
 
-    companion object {
-        /**
-         * Use this factory method to create a new instance of
-         * this fragment using the provided parameters.
-         *
-         * @param param1 Parameter 1.
-         * @param param2 Parameter 2.
-         * @return A new instance of fragment Edit.
-         */
-        // TODO: Rename and change types and number of parameters
-        @JvmStatic
-        fun newInstance(param1: String, param2: String) =
-            Edit().apply {
-                arguments = Bundle().apply {
-                    putString(ARG_PARAM1, param1)
-                    putString(ARG_PARAM2, param2)
-                }
+    private fun loadBeerFromDB(id: Long){
+        lifecycleScope.launch {
+            try {
+                beer = db.beerDao().getBeerById(id)
+                fillUI()
+            } catch (e: Exception) {
+                e.printStackTrace()
+                Toast.makeText(requireContext(), "Hiba a sör betöltésekor", Toast.LENGTH_SHORT).show()
             }
+        }
+    }
+
+    private fun fillUI() {
+        view?.findViewById<TextView>(R.id.etBeerName)?.text = beer.name
+        view?.findViewById<TextView>(R.id.etBeerNote)?.text = beer.note
     }
 }

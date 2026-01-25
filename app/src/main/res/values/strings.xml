@@ -3,5 +3,17 @@
     <string name="add_beer">+</string>
     <string name="edit">Szerkeztés</string>
     <string name="delete">Törlés</string>
-    <!-- TODO: Remove or change this placeholder text -->
+    <string name="save">Mentés</string>
+    <string name="beer_name">Sör neve</string>
+    <string name="beer_note">Megjegyzés</string>
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <array name="beer_types">
+        <item>Lager</item>
+        <item>IPA</item>
+        <item>APA</item>
+        <item>Stout</item>
+        <item>Pils</item>
+        <item>Porter</item>
+        <item>Raddler</item>
+    </array>
 </resources>

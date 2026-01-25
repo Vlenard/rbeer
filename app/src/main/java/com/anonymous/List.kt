@@ -5,6 +5,9 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Button
+import androidx.fragment.app.ListFragment
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.anonymous.data.AppDatabase
 import com.anonymous.adapters.BeerAdapter2List
@@ -34,9 +37,14 @@ class List : Fragment() {
 
         _binding = FragmentListBinding.bind(view)
 
+        view.findViewById<Button>(R.id.btnAdd).setOnClickListener {
+            findNavController().navigate(R.id.action_list_to_edit)
+        }
+
         beerAdapter = BeerAdapter2List(
             onItemClick = { beer ->
-
+                val action = ListDirections.actionListToEdit(beer.id)
+                findNavController().navigate(action)
             },
             onDeleteClick = { beer ->
                 deleteBeer(beer)
@@ -69,7 +77,6 @@ class List : Fragment() {
             }
         }
     }
-
     private fun deleteBeer(beer: Beer) {
         CoroutineScope(Dispatchers.IO).launch {
             db.beerDao().delete(beer)

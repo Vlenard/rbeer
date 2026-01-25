@@ -42,7 +42,7 @@ class BeerAdapter2List(
             tvRating.text = "⭐ ${beer.rating}/5"
             tvNote.text = beer.note
 
-            root.setOnClickListener {
+            btnEdit.setOnClickListener {
                 onItemClick(beer)
             }
 

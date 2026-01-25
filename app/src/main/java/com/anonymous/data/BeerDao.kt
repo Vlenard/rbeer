@@ -15,7 +15,7 @@ interface BeerDao {
 
     // READ: Egy adott sör lekérdezése ID alapján
     @Query("SELECT * FROM beers WHERE id = :id")
-    suspend fun getBeerById(id: Long): Beer?
+    suspend fun getBeerById(id: Long): Beer
 
     // UPDATE: Egy sör frissítése
     @Update

@@ -10,20 +10,7 @@
         android:label="fragment_list"
         tools:layout="@layout/fragment_list" >
         <action
-            android:id="@+id/action_list_to_beer"
-            app:destination="@id/beer"
-            app:enterAnim="@android:anim/fade_in"
-            app:exitAnim="@android:anim/fade_out"
-            app:popEnterAnim="@android:anim/fade_in"
-            app:popExitAnim="@android:anim/fade_out" />
-    </fragment>
-    <fragment
-        android:id="@+id/beer"
-        android:name="com.anonymous.Beer"
-        android:label="fragment_beer"
-        tools:layout="@layout/fragment_beer" >
-        <action
-            android:id="@+id/action_beer_to_edit"
+            android:id="@+id/action_list_to_edit"
             app:destination="@id/edit"
             app:enterAnim="@android:anim/fade_in"
             app:exitAnim="@android:anim/fade_out"
@@ -34,5 +21,10 @@
         android:id="@+id/edit"
         android:name="com.anonymous.Edit"
         android:label="fragment_edit"
-        tools:layout="@layout/fragment_edit" />
+        tools:layout="@layout/fragment_edit" >
+        <argument
+            android:name="beerId"
+            app:argType="long"
+            android:defaultValue="-1L" />
+    </fragment>
 </navigation>
