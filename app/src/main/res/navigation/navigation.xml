@@ -26,5 +26,8 @@
             android:name="beerId"
             app:argType="long"
             android:defaultValue="-1L" />
+        <action
+            android:id="@+id/action_edit_to_list"
+            app:destination="@id/list" />
     </fragment>
 </navigation>

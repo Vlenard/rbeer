@@ -25,27 +25,7 @@ abstract class AppDatabase : RoomDatabase() {
                     context.applicationContext,
                     AppDatabase::class.java,
                     "app_database"
-                )
-                    // Callback az adatbázis létrehozásakor
-                    .addCallback(object : RoomDatabase.Callback() {
-                        override fun onCreate(db: SupportSQLiteDatabase) {
-                            super.onCreate(db)
-                            // Adatok beszúrása háttér szálon
-                            CoroutineScope(Dispatchers.IO).launch {
-                                getDatabase(context).beerDao().apply {
-                                    val sampleBeers = listOf(
-                                        Beer(name = "Soproni Classic", rating = 4, note = "Klasszikus magyar lager, könnyen iható.", type = BeerType.STOUT),
-                                        Beer(name = "Mad Scientist IPA", rating = 5, note = "Erősen komlós, gyümölcsös illattal.", type = BeerType.IPA),
-                                        Beer(name = "Guinness Draught", rating = 5, note = "Krémes stout, pörkölt malátás íz.", type = BeerType.STOUT),
-                                        Beer(name = "Paulaner Hefe-Weißbier", rating = 4, note = "Banános, szegfűszeges búzasör.", type = BeerType.IPA),
-                                        Beer(name = "Pilsner Urquell", rating = 3, note = "Kesernyés, tiszta ízvilág.", type = BeerType.LAGER)
-                                    )
-                                    sampleBeers.forEach { insert(it) }
-                                }
-                            }
-                        }
-                    })
-                    .build()
+                ).build()
 
                 INSTANCE = instance
                 instance

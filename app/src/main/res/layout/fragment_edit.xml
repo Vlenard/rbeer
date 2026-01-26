@@ -12,7 +12,7 @@
     <EditText
         android:id="@+id/etBeerName"
         android:layout_width="320dp"
-        android:layout_height="wrap_content"
+        android:layout_height="50dp"
         android:autofillHints="name"
         android:backgroundTint="@color/secondaryColor"
         android:hint="@string/beer_name"
@@ -37,70 +37,37 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/etBeerName">
 
-        <ImageButton
-            android:id="@+id/imageButton"
-            android:layout_width="50dp"
+        <EditText
+            android:id="@+id/beerRate"
+            android:layout_width="320dp"
             android:layout_height="50dp"
-            android:layout_marginHorizontal="5dp"
-            android:background="@android:drawable/btn_star_big_off"
-            android:contentDescription="star 1"
-            android:src="@android:drawable/btn_star_big_off" />
-
-        <ImageButton
-            android:id="@+id/imageButton2"
-            android:layout_width="50dp"
-            android:layout_height="50dp"
-            android:layout_marginHorizontal="5dp"
             android:layout_weight="0"
-            android:background="@android:drawable/btn_star_big_off"
-            android:contentDescription="star 1"
-            android:src="@android:drawable/btn_star_big_off" />
-
-        <ImageButton
-            android:id="@+id/imageButton3"
-            android:layout_width="50dp"
-            android:layout_height="50dp"
-            android:layout_marginHorizontal="5dp"
-            android:layout_weight="0"
-            android:background="@android:drawable/btn_star_big_off"
-            android:contentDescription="star 1"
-            android:src="@android:drawable/btn_star_big_off" />
-
-        <ImageButton
-            android:id="@+id/imageButton4"
-            android:layout_width="50dp"
-            android:layout_height="50dp"
-            android:layout_marginHorizontal="5dp"
-            android:layout_weight="0"
-            android:background="@android:drawable/btn_star_big_off"
-            android:contentDescription="star 1"
-            android:src="@android:drawable/btn_star_big_off" />
-
-        <ImageButton
-            android:id="@+id/imageButton5"
-            android:layout_width="50dp"
-            android:layout_height="50dp"
-            android:layout_marginHorizontal="5dp"
-            android:layout_weight="0"
-            android:background="@android:drawable/btn_star_big_off"
-            android:contentDescription="star 1"
-            android:src="@android:drawable/btn_star_big_off" />
+            android:backgroundTint="@color/secondaryColor"
+            android:ems="10"
+            android:hint="@string/rate"
+            android:inputType="number"
+            android:padding="12dp"
+            android:textColorHint="@color/secondaryColor" />
     </LinearLayout>
 
     <!-- Beer type (Spinner) -->
+
+    <!-- Beer note -->
     <Spinner
         android:id="@+id/spBeerType"
         android:layout_width="320dp"
-        android:layout_height="48dp"
+        android:layout_height="50dp"
         android:layout_marginTop="16dp"
         android:backgroundTint="@color/secondaryColor"
         android:entries="@array/beer_types"
+        android:foregroundTint="@color/secondaryColor"
+        android:padding="12dp"
         android:spinnerMode="dropdown"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias=".5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/llBeerRating" />
 
-    <!-- Beer note -->
     <EditText
         android:id="@+id/etBeerNote"
         android:layout_width="320dp"
@@ -128,9 +95,26 @@
         android:padding="12dp"
         android:text="@string/save"
         android:textColor="@color/primaryColor"
+        android:textSize="18sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/etBeerNote" />
+
+    <Button
+        android:id="@+id/btnReturn"
+        android:layout_width="320dp"
+        android:layout_height="wrap_content"
+        android:backgroundTint="@color/primaryColor"
+        android:padding="12dp"
+        android:text="@string/back"
+        android:textColor="@color/secondaryColor"
+        android:textSize="18sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.491"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btnSaveBeer"
+        app:strokeColor="@color/secondaryColor"
+        app:strokeWidth="2dp" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
 

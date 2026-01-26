@@ -7,6 +7,9 @@
     <string name="beer_name">Sör neve</string>
     <string name="beer_note">Megjegyzés</string>
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="rate">Értékelés</string>
+    <string name="back">Vissza</string>
+    <string name="noBeer">Nincs még értékelt sör</string>
     <array name="beer_types">
         <item>Lager</item>
         <item>IPA</item>
